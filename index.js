@@ -19,7 +19,7 @@ try {
     ],
     repositoryName
   };
-  const command = new BatchGetImageCommand(input);  console.log("command: ", command);
+  const command = new BatchGetImageCommand(input);
 
   client.send(command).then(response => {
       if (!response.images || !response.images[0] || !response.images[0].imageManifest) {
@@ -28,7 +28,7 @@ try {
           };
       }
 
-      const manifests = JSON.parse(response.images[0].imageManifest.manifests)
+      const manifests = JSON.parse(response.images[0].imageManifest).manifests;
 
       manifests.forEach(element => {
         if (element.platform.architecture === architecture) {
