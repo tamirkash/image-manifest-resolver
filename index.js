@@ -9,7 +9,7 @@ try {
   const repositoryName = core.getInput('repository-name');
   const imageTag = core.getInput('image-tag');
 
-  console.log(`Resolving image for architecture: ${architecture}!`);
+  console.log(`Resolving image for architecture: ${architecture}`);
   const client = new ECRClient({ region: awsRegion });
   const input = {
     imageIds: [
@@ -19,18 +19,18 @@ try {
     ],
     repositoryName
   };
-  const command = new BatchGetImageCommand(input);
-  console.log("command: ", command);
+  const command = new BatchGetImageCommand(input);  console.log("command: ", command);
 
   client.send(command).then(response => {
-    console.log("response: ", response);
-    if (!response.mediaType || !response.mediaType.includes("manifest")) {
-        throw {
-          message: "could not find any manifest list"
-        };
+      if (!response.images || !response.images[0] || !response.images[0].imageManifest) {
+          throw {
+            message: "could not find any manifest list"
+          };
       }
 
-      response.manifests.array.forEach(element => {
+      const manifests = JSON.parse(response.images[0].imageManifest.manifests)
+
+      manifests.forEach(element => {
         if (element.platform.architecture === architecture) {
           digest = element.digest;
         }
