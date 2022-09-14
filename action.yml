@@ -1,0 +1,21 @@
+name: 'image-manifest-resolver'
+description: 'Resolve the docker image for the desired architecture out of a manifest'
+inputs:
+  architecture:
+    description: 'The desired image architecture'
+    required: true
+  aws-region:
+    description: 'AWS region'
+    required: true
+  image-tag:
+    descriptioon: 'Image tag'
+    required: true
+  repository-name:
+    description: Repository name
+    required: true
+outputs:
+  digest:
+    description: 'The sha256 hash of the desired docker image'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'

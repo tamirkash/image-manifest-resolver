@@ -1,0 +1,25 @@
+{
+  "name": "image-manifest-resolver",
+  "version": "1.0.0",
+  "description": "Github action for resolving a docker image out of an image manifest",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tamirkash/image-manifest-resolver.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tamirkash/image-manifest-resolver/issues"
+  },
+  "homepage": "https://github.com/tamirkash/image-manifest-resolver#readme",
+  "dependencies": {
+    "@actions/core": "^1.9.1",
+    "@actions/github": "^5.0.3",
+    "@aws-sdk/client-ecr": "^3.170.0"
+  }
+}
