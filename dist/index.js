@@ -30966,7 +30966,10 @@ try {
     repositoryName
   };
   const command = new BatchGetImageCommand(input);
+  console.log("command: ", command);
+
   client.send(command).then(response => {
+    console.log("response: ", response);
     if (!response.mediaType || !response.mediaType.includes("manifest")) {
         throw {
           message: "could not find any manifest list"
@@ -30987,9 +30990,7 @@ try {
       
       core.setOutput("digest", digest);
       console.log(`Setting output.digest: ${digest}`);
-  }).catch(err => {
-    console.log("failed during fetching manifest list. ", err);
-  });
+  })
 } catch (error) {
   core.setFailed(error.message);
 }
