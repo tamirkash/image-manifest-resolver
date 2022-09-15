@@ -28,7 +28,13 @@ try {
           };
       }
 
-      const manifests = JSON.parse(response.images[0].imageManifest).manifests;
+      const imageManifest = JSON.parse(response.images[0].imageManifest);
+      
+      if (!imageManifest.manifests || imageManifest.manifests.length == 0) {
+        throw {
+          message: "could not find any manifest list"
+        };
+      }
 
       manifests.forEach(element => {
         if (element.platform.architecture === architecture) {
