@@ -37,9 +37,11 @@ The desired docker image digest
 
 ## Example usage
 
+```yaml
 uses: tamirkash/image-manifest-resolver@v1.0.3
 with:
   architecture: amd64
   aws-region: eu-west-1
   image-tag: latest_release
   repository-name: my-repository
+```
