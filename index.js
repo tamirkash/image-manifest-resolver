@@ -36,7 +36,7 @@ try {
         };
       }
 
-      manifests.forEach(element => {
+      imageManifest.manifests.forEach(element => {
         if (element.platform.architecture === architecture) {
           digest = element.digest;
         }
